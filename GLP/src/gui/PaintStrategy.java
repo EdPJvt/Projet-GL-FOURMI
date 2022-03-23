@@ -2,12 +2,14 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 
 import config.GameConfiguration;
 import engine.map.Block;
 import engine.map.Map;
-import character.AbstractEntity;
+import character.*;
 
 /**
  * Copyright SEDAMOP - Software Engineering
@@ -41,9 +43,40 @@ public class PaintStrategy {
 
 		graphics.setColor(Color.BLUE);
 		graphics.drawOval(x * blockSize + blockSize / 2, y * blockSize, 5, 5);
-/*		graphics.drawLine(x * blockSize + blockSize / 2, y * blockSize, (x + 1) * blockSize, (y + 1) * blockSize);
+		graphics.drawLine(x * blockSize + blockSize / 2, y * blockSize, (x + 1) * blockSize, (y + 1) * blockSize);
 		graphics.drawLine(x * blockSize + blockSize / 2, y * blockSize, x * blockSize + blockSize / 2, (y + 1) * blockSize);
-*/
+
+	}
+	
+	public void paint(ArrayList<Block> fourmilieres, Graphics graphics) {
+		int i;
+		for(i=0;i<fourmilieres.size();i++) {
+			Block tmp = fourmilieres.get(i);
+			int y = tmp.getLine();
+			int x = tmp.getColumn();
+			
+			graphics.setColor(Color.ORANGE);
+			graphics.fillRect(x, y, GameConfiguration.BLOCK_SIZE, GameConfiguration.BLOCK_SIZE);
+			
+		}
+		
+	}
+	
+	public void paint(List<Ant> ants, Graphics graphics) {
+		int i;
+		for(i=0;i<ants.size();i++) {
+			Ant tmpant = ants.get(i);
+			Block position = tmpant.getPosition();
+			int y = position.getLine();
+			int x = position.getColumn();
+			int blockSize= GameConfiguration.BLOCK_SIZE;
+			
+			graphics.setColor(Color.RED);
+			graphics.drawOval(x * blockSize + blockSize / 2, y * blockSize, 5, 5);
+			graphics.drawLine(x * blockSize + blockSize / 2, y * blockSize, (x + 1) * blockSize, (y + 1) * blockSize);
+			graphics.drawLine(x * blockSize + blockSize / 2, y * blockSize, x * blockSize + blockSize / 2, (y + 1) * blockSize);			
+		}
+
 	}
 /*
 	public void paint(AbstractEntity entity, Graphics graphics) {
@@ -57,4 +90,5 @@ public class PaintStrategy {
 		graphics.fillOval(x * blockSize, y * blockSize, blockSize, blockSize);
 	}
 */
+	
 }

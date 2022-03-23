@@ -10,6 +10,12 @@ import character.AbstractEntity;
 //import config.GameConfiguration;
 import engine.process.MobileElementManager;
 
+import java.util.ArrayList;
+
+import engine.map.Block;
+
+import character.Ant;
+
 /**
  * Copyright SEDAMOP - Software Engineering
  * 
@@ -26,7 +32,8 @@ public class GameDisplay extends JPanel {
 
 	public GameDisplay(Map map, MobileElementManager manager) {
 		this.map = map;
-//		this.manager = manager;
+
+	this.manager = manager;
 	}
 
 
@@ -36,8 +43,14 @@ public class GameDisplay extends JPanel {
 
 		paintStrategy.paint(map, g);
 
-		AbstractEntity entity = manager.getEntity();
+		AbstractEntity entity = manager.getAnt();
 		paintStrategy.paint(entity, g);
+		
+		ArrayList<Block> fourmilieres = manager.getFourmilieres();
+		paintStrategy.paint(fourmilieres,g);
+		
+		ArrayList<Ant> ants = manager.getAnts();
+		paintStrategy.paint(ants,g);
 /*
 		for (AbstractEntity entity : manager.getPredator()) {
 			paintStrategy.paint(enemy, g);

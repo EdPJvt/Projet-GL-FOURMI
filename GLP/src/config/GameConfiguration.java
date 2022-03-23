@@ -1,5 +1,6 @@
 package config;
 
+import engine.map.Block;
 /**
  * Copyright SEDAMOP - Software Engineering
  * 
@@ -7,8 +8,8 @@ package config;
  *
  */
 public class GameConfiguration {
-	public static final int WINDOW_WIDTH = 400;
-	public static final int WINDOW_HEIGHT = 800;
+	public static final int WINDOW_WIDTH = 800;
+	public static final int WINDOW_HEIGHT = 1600;
 	
 	public static final int BLOCK_SIZE = 40;
 	
@@ -16,6 +17,8 @@ public class GameConfiguration {
 	public static final int COLUMN_COUNT = WINDOW_WIDTH / BLOCK_SIZE;
 	
 	public static final int GAME_SPEED = 1000;
+	
+	public static final Block DEFAULTSPAWN= new Block(1,1);
 	
 
 	

@@ -50,7 +50,7 @@ public class MainGUI extends JFrame implements Runnable {
 		KeyControls keyControls = new KeyControls();
 		JTextField textField = new JTextField();
 		textField.addKeyListener(keyControls);
-		contentPane.add(textField, BorderLayout.SOUTH);
+		contentPane.add(textField);
 
 		map = GameBuilder.buildMap();
 		manager = GameBuilder.buildInitMobile(map);
@@ -78,7 +78,7 @@ public class MainGUI extends JFrame implements Runnable {
 				System.out.println(e.getMessage());
 			}
 
-//			manager.nextRound();
+			manager.nextRound();
 			dashboard.repaint();
 		}
 	}
