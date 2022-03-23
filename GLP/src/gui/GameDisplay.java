@@ -1,14 +1,14 @@
 package gui;
 
 import java.awt.Graphics;
-import java.util.List;
+//import java.util.List;
 import engine.map.Map;
 
 import javax.swing.JPanel;
 
 import character.AbstractEntity;
-import config.GameConfiguration;
-import engine.mobile.MobileElementManager;
+//import config.GameConfiguration;
+import engine.process.MobileElementManager;
 
 /**
  * Copyright SEDAMOP - Software Engineering
@@ -26,8 +26,9 @@ public class GameDisplay extends JPanel {
 
 	public GameDisplay(Map map, MobileElementManager manager) {
 		this.map = map;
-		this.manager = manager;
+//		this.manager = manager;
 	}
+
 
 	@Override
 	public void paintComponent(Graphics g) {
@@ -35,14 +36,13 @@ public class GameDisplay extends JPanel {
 
 		paintStrategy.paint(map, g);
 
-		AbstractEntity entity = manager.getAbstractEntity();
+		AbstractEntity entity = manager.getEntity();
 		paintStrategy.paint(entity, g);
-
+/*
 		for (AbstractEntity entity : manager.getPredator()) {
 			paintStrategy.paint(enemy, g);
 		}
-
+*/
 	}
-
 
 }

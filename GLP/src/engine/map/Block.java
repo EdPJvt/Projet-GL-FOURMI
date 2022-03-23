@@ -23,6 +23,15 @@ public class Block {
 		return column;
 	}
 
+	public boolean equals(Block position) {
+		if(this.getLine()==position.getLine()) {
+			if(this.getColumn()==position.getColumn()) {
+				return true;
+			}
+		}
+		return false;
+		
+	}
 	@Override
 	public String toString() {
 		return "Block [line=" + line + ", column=" + column + "]";

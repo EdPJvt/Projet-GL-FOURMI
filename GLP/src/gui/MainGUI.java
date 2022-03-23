@@ -11,10 +11,12 @@ import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
+import character.AbstractEntity;
 import config.GameConfiguration;
 import engine.map.Block;
 import engine.map.Map;
 import engine.process.GameBuilder;
+import gui.GameDisplay;
 import engine.process.MobileElementManager;
 
 /**
@@ -54,8 +56,8 @@ public class MainGUI extends JFrame implements Runnable {
 		manager = GameBuilder.buildInitMobile(map);
 		dashboard = new GameDisplay(map, manager);
 
-		MouseControls mouseControls = new MouseControls();
-		dashboard.addMouseListener(mouseControls);
+	//	MouseControls mouseControls = new MouseControls();
+	//	dashboard.addMouseListener(mouseControls);
 
 		dashboard.setPreferredSize(preferredSize);
 		contentPane.add(dashboard, BorderLayout.CENTER);
@@ -67,7 +69,7 @@ public class MainGUI extends JFrame implements Runnable {
 		setResizable(false);
 	}
 
-	@Override
+
 	public void run() {
 		while (true) {
 			try {
@@ -76,53 +78,46 @@ public class MainGUI extends JFrame implements Runnable {
 				System.out.println(e.getMessage());
 			}
 
-			manager.nextRound();
+//			manager.nextRound();
 			dashboard.repaint();
 		}
 	}
 
 	private class KeyControls implements KeyListener {
 
-		@Override
+
 		public void keyPressed(KeyEvent event) {
 			char keyChar = event.getKeyChar();
 			switch (keyChar) {
 
 			case 'q':
-				manager.moveLeftAirCraft();
+				manager.moveLeftEntity();
 				break;
 			case 'd':
-				manager.moveRightAirCraft();
+				manager.moveRightEntity();
 				break;
-			case 'm':
-				manager.generateMissile();
+			case 'z':
+				manager.moveUpEntity();
+				break;
+			case 's':
+				manager.moveDownEntity();
 				break;
 			default:
 				break;
 			}
 		}
 
-		@Override
 		public void keyTyped(KeyEvent e) {
 
 		}
 
-		@Override
 		public void keyReleased(KeyEvent e) {
 
 		}
 	}
 
-	private class MouseControls implements MouseListener {
+/*	private class MouseControls implements MouseListener {
 
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			int x = e.getX();
-			int y = e.getY();
-
-			Block bombPosition = dashboard.getBombPosition(x, y);
-			manager.putBomb(bombPosition);
-		}
 
 		@Override
 		public void mousePressed(MouseEvent e) {
@@ -143,6 +138,7 @@ public class MainGUI extends JFrame implements Runnable {
 		public void mouseExited(MouseEvent e) {
 
 		}
-	}
+
+	}*/
 
 }

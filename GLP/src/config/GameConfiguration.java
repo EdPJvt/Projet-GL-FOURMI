@@ -16,9 +16,8 @@ public class GameConfiguration {
 	public static final int COLUMN_COUNT = WINDOW_WIDTH / BLOCK_SIZE;
 	
 	public static final int GAME_SPEED = 1000;
+	
 
-    public static final int RADIUS_AROUND_ANTHILL = 3*3 ;
-   // public static final int MAXLIVES =
 	
 
 }

@@ -40,13 +40,13 @@ public class PaintStrategy {
 		int x = position.getColumn();
 
 		graphics.setColor(Color.BLUE);
-		graphics.drawLine(x * blockSize + blockSize / 2, y * blockSize, x * blockSize, (y + 1) * blockSize);
-		graphics.drawLine(x * blockSize + blockSize / 2, y * blockSize, (x + 1) * blockSize, (y + 1) * blockSize);
+		graphics.drawOval(x * blockSize + blockSize / 2, y * blockSize, 5, 5);
+/*		graphics.drawLine(x * blockSize + blockSize / 2, y * blockSize, (x + 1) * blockSize, (y + 1) * blockSize);
 		graphics.drawLine(x * blockSize + blockSize / 2, y * blockSize, x * blockSize + blockSize / 2, (y + 1) * blockSize);
-
+*/
 	}
-
-/*	public void paint(AbstractEntity entity, Graphics graphics) {
+/*
+	public void paint(AbstractEntity entity, Graphics graphics) {
 		Block position = enemy.getPosition();
 		int blockSize = GameConfiguration.BLOCK_SIZE;
 
