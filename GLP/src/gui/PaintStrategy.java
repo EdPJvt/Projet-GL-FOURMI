@@ -48,6 +48,19 @@ public class PaintStrategy {
 
 	}
 	
+	public void paintFood(ArrayList<Block> foodsources, Graphics graphics) {
+		int i;
+		for(i=0;i<foodsources.size();i++) {
+			Block tmp = foodsources.get(i);
+			int y = tmp.getLine();
+			int x = tmp.getColumn();
+			
+			graphics.setColor(Color.YELLOW);
+			graphics.fillRect(x, y, GameConfiguration.BLOCK_SIZE, GameConfiguration.BLOCK_SIZE);
+			
+		}
+	}
+	
 	public void paint(ArrayList<Block> fourmilieres, Graphics graphics) {
 		int i;
 		for(i=0;i<fourmilieres.size();i++) {

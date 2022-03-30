@@ -51,6 +51,9 @@ public class GameDisplay extends JPanel {
 		
 		ArrayList<Ant> ants = manager.getAnts();
 		paintStrategy.paint(ants,g);
+		
+		ArrayList<Block> foodsources= manager.getFoodSources();
+		paintStrategy.paintFood(foodsources, g);
 /*
 		for (AbstractEntity entity : manager.getPredator()) {
 			paintStrategy.paint(enemy, g);

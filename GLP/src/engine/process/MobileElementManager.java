@@ -24,9 +24,10 @@ import java.util.List;
 public class MobileElementManager {
 	private Map map;
 	private ArrayList<Ant> ants= new ArrayList<Ant>();
-//	private ArrayList<AbstractEntity> enemies;
+//	private ArrayList<AbstractEntity> predator;
 	private AbstractEntity controledant= new Ant(new Block(1,1));
 	private ArrayList<Block> fourmilieres= new ArrayList<Block>();
+	private ArrayList<Block> foodsources= new ArrayList<Block>(GameConfiguration.FOOD_MAX_NUMBER);
 
 	public MobileElementManager(Map map) {
 		this.map = map;
@@ -34,16 +35,15 @@ public class MobileElementManager {
 		initAnts();
 	}
 	
-	
-	
-	
 	public void initFourmiliere() {
-		fourmilieres.add(GameConfiguration.DEFAULTSPAWN);
+		fourmilieres.add(GameConfiguration.DEFAULT_SPAWN);
 	}
 	public void initAnts() {
 		ants.add(new Ant(fourmilieres.get(0)));
 	}
-	
+	public void initFoodSources(){
+        foodsources.add(GameConfiguration.DEFAULT_FOOD_SPAWN); 
+    }
 	
 
 	public void set(AbstractEntity controledant) {
@@ -85,7 +85,18 @@ public class MobileElementManager {
 		}
 	}
 	
-
+	public void generateFoodSource() {
+		int x = getRandomNumber(0,GameConfiguration.LINE_COUNT);
+		int y = getRandomNumber(0,GameConfiguration.COLUMN_COUNT);
+		
+		int i;
+		for(i=0 ; i<GameConfiguration.FOOD_MAX_NUMBER ; i++){
+			foodsources.add(new Block(x*GameConfiguration.BLOCK_SIZE,y*GameConfiguration.BLOCK_SIZE));
+			x = getRandomNumber(0,GameConfiguration.LINE_COUNT);
+			y = getRandomNumber(0,GameConfiguration.COLUMN_COUNT);
+		}
+	}
+	
 	public void generateAnt() {
 		int random = getRandomNumber(0, fourmilieres.size()-1);
 		this.ants.add(new Ant(fourmilieres.get(random)));
@@ -94,7 +105,8 @@ public class MobileElementManager {
 	public void nextRound() {
 		//generatePredator();
 		generateAnt();
-		//generateFoodSource();
+		// IL faudra limiter la génération de nourriturre
+		generateFoodSource();
 		moveAnt();
 	}
 /*
@@ -201,6 +213,10 @@ private void generatePredator() {
 */
 	public ArrayList<Block> getFourmilieres(){
 		return fourmilieres;
+	}
+	
+	public ArrayList<Block> getFoodSources(){
+		return foodsources;
 	}
 
 	private static int getRandomNumber(int min, int max) {

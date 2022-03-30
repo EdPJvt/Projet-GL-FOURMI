@@ -9,6 +9,7 @@ package engine.map;
 public class Block {
 	private int line;
 	private int column;
+	private boolean occupied;
 
 	public Block(int line, int column) {
 		this.line = line;
@@ -31,6 +32,14 @@ public class Block {
 		}
 		return false;
 		
+	}
+	
+	public boolean getOccupied() {
+		return occupied;
+	}
+	
+	public void setOccupied(boolean bool) {
+		this.occupied=bool;
 	}
 	@Override
 	public String toString() {
