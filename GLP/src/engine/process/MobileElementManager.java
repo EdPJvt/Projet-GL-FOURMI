@@ -109,16 +109,17 @@ public class MobileElementManager {
 		generateFoodSource();
 		moveAnt();
 	}
-/*
-private void generatePredator() {
+
+	private void generatePredator() {
 		int randomColumn = getRandomNumber(0, GameConfiguration.COLUMN_COUNT - 1);
-		Block position = new Block(0, randomColumn);
-		Enemy enemy = new Enemy(position);
+		int randLine = getRandomNumber(0, GameConfiguration.LINE_COUNT - 1);
+		Block position = new Block(randomLine, randomColumn);
+		AbstractEntity predator = new y(position);
 		add(enemy);
 	}
 
 
-*/	private void moveAnt() {
+	private void moveAnt() {
 		ArrayList<Ant> outOfBoundAnts = new ArrayList<Ant>();
 		for (Ant tmpant : ants) {
 			Block position= tmpant.getPosition();

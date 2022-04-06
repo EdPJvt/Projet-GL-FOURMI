@@ -16,16 +16,24 @@ public class Ant extends AbstractEntity{
 
 	}
 
-	@Override
-	public void move(Block newposition) {
-		this.setPosition(newposition);
-
-	}
 
 	@Override
 	public void search() {
-		// TODO Auto-generated method stub
-		
+		ArrayList<Block> vision = new Arraylist<Block>() ;
+		switch(visionlevel){
+		case 0:
+			//5 cases
+			break;
+		case 1:
+			//9 cases
+			break;
+		case 2:
+			//21 cases
+			break;
+		case 2:
+			//25 cases		
+			break;
+		}
 	}
 
 }

@@ -35,7 +35,7 @@ public abstract class AbstractEntity {
 	
 	abstract public void search();
 	abstract public void attack(AbstractEntity entity);
-	abstract public void move(Block newposition);
+	
 	
 	
 	@Override
