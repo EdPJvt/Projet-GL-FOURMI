@@ -1,6 +1,5 @@
 package character;
 
-import engine.map.Block;
 
 public abstract class AbstractAnt extends AbstractEntity{
 
@@ -20,10 +19,5 @@ public abstract class AbstractAnt extends AbstractEntity{
 		
 	}
 
-	@Override
-	public void move(Block position) {
-		// TODO Auto-generated method stub
-
-	}
 
 }

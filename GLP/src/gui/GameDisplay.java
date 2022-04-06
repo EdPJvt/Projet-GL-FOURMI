@@ -54,11 +54,14 @@ public class GameDisplay extends JPanel {
 		
 		ArrayList<Block> foodsources= manager.getFoodSources();
 		paintStrategy.paintFood(foodsources, g);
-/*
-		for (AbstractEntity entity : manager.getPredator()) {
-			paintStrategy.paint(enemy, g);
-		}
-*/
+
+		ArrayList<Block> predators = manager.getPredator();
+		paintStrategy.paintPredator(predators, g);
+		
+		ArrayList<Block> stoneObstacles = manager.getStoneObstacles();
+		paintStrategy.paintStoneObstacles(stoneObstacles, g);
+
+		
 	}
 
 }

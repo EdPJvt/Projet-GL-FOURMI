@@ -55,6 +55,7 @@ public class MainGUI extends JFrame implements Runnable {
 		map = GameBuilder.buildMap();
 		manager = GameBuilder.buildInitMobile(map);
 		dashboard = new GameDisplay(map, manager);
+		manager.gamePreparation();
 
 	//	MouseControls mouseControls = new MouseControls();
 	//	dashboard.addMouseListener(mouseControls);
@@ -77,7 +78,7 @@ public class MainGUI extends JFrame implements Runnable {
 			} catch (InterruptedException e) {
 				System.out.println(e.getMessage());
 			}
-
+			
 			manager.nextRound();
 			dashboard.repaint();
 		}

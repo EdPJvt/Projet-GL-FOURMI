@@ -2,7 +2,7 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Iterator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +27,11 @@ public class PaintStrategy {
 				Block block = blocks[lineIndex][columnIndex];
 
 				if ((lineIndex + columnIndex) % 2 == 0) {
-					graphics.setColor(Color.GRAY);
+					graphics.setColor(new Color(0,100,0));
+					graphics.fillRect(block.getColumn() * blockSize, block.getLine() * blockSize, blockSize, blockSize);
+				}
+				else {
+					graphics.setColor(new Color(0,128,0));
 					graphics.fillRect(block.getColumn() * blockSize, block.getLine() * blockSize, blockSize, blockSize);
 				}
 			}
@@ -41,7 +45,7 @@ public class PaintStrategy {
 		int y = position.getLine();
 		int x = position.getColumn();
 
-		graphics.setColor(Color.BLUE);
+		graphics.setColor(Color.WHITE);
 		graphics.drawOval(x * blockSize + blockSize / 2, y * blockSize, 5, 5);
 		graphics.drawLine(x * blockSize + blockSize / 2, y * blockSize, (x + 1) * blockSize, (y + 1) * blockSize);
 		graphics.drawLine(x * blockSize + blockSize / 2, y * blockSize, x * blockSize + blockSize / 2, (y + 1) * blockSize);
@@ -61,6 +65,32 @@ public class PaintStrategy {
 		}
 	}
 	
+	public void paintPredator(ArrayList<Block> predators, Graphics graphics) {
+		int i;
+		for(i=0;i<predators.size();i++) {
+			Block tmp = predators.get(i);
+			int y = tmp.getLine();
+			int x = tmp.getColumn();
+			
+			graphics.setColor(Color.RED);
+			graphics.fillRect(x, y, GameConfiguration.BLOCK_SIZE, GameConfiguration.BLOCK_SIZE);
+			
+		}
+	}
+	
+	public void paintStoneObstacles(ArrayList<Block> stoneObstacles, Graphics graphics) {
+		int i;
+		for(i=0;i<stoneObstacles.size();i++) {
+			Block tmp = stoneObstacles.get(i);
+			int y = tmp.getLine();
+			int x = tmp.getColumn();
+			
+			graphics.setColor(Color.GRAY);
+			graphics.fillRect(x, y, GameConfiguration.BLOCK_SIZE, GameConfiguration.BLOCK_SIZE);
+			
+		}
+	}
+	
 	public void paint(ArrayList<Block> fourmilieres, Graphics graphics) {
 		int i;
 		for(i=0;i<fourmilieres.size();i++) {
@@ -68,7 +98,7 @@ public class PaintStrategy {
 			int y = tmp.getLine();
 			int x = tmp.getColumn();
 			
-			graphics.setColor(Color.ORANGE);
+			graphics.setColor(new Color(139,69,19));
 			graphics.fillRect(x, y, GameConfiguration.BLOCK_SIZE, GameConfiguration.BLOCK_SIZE);
 			
 		}

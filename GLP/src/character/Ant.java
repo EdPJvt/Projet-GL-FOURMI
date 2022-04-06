@@ -1,6 +1,7 @@
 package character;
 
-import engine.actions.Attack;
+import java.util.ArrayList;
+
 import engine.map.Block;
 
 public class Ant extends AbstractEntity{
@@ -8,19 +9,9 @@ public class Ant extends AbstractEntity{
 	public Ant(Block pos) {
 		this.setPosition(pos);
 	}
-
-
-	@Override
-	public void attack(AbstractEntity entity) {
-		Attack.doAttack(this.getDamage(), entity);
-
-	}
-
-
-	@Override
 	public void search() {
-		ArrayList<Block> vision = new Arraylist<Block>() ;
-		switch(visionlevel){
+		ArrayList<Block> vision = new ArrayList<Block>() ;
+		switch(this.getVisionlevel()){
 		case 0:
 			//5 cases
 			break;
@@ -30,7 +21,7 @@ public class Ant extends AbstractEntity{
 		case 2:
 			//21 cases
 			break;
-		case 2:
+		case 3:
 			//25 cases		
 			break;
 		}

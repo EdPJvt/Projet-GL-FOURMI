@@ -6,6 +6,7 @@ public abstract class AbstractEntity {
 	private int lives;
 	private int damage;
 	private int visionlevel;
+	private int tauxPheromones;
 	private Block position;
 
 	public int getLives() {
@@ -32,9 +33,14 @@ public abstract class AbstractEntity {
 	public void setPosition(Block newPosition) {
 		this.position=newPosition; 
 	}
+	public int getTauxPheromones(){
+		return tauxPheromones;
+	}
+	public void setTauxPheromones(int newTauxPheromones) {
+		this.tauxPheromones = newTauxPheromones; 
+	}
 	
 	abstract public void search();
-	abstract public void attack(AbstractEntity entity);
 	
 	
 	

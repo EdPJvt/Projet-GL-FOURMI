@@ -10,7 +10,8 @@ public class Block {
 	private int line;
 	private int column;
 	private boolean occupied;
-
+	private int pheromones;
+	
 	public Block(int line, int column) {
 		this.line = line;
 		this.column = column;
@@ -23,6 +24,22 @@ public class Block {
 	public int getColumn() {
 		return column;
 	}
+	
+	public int getPheromones() {
+		return pheromones;
+	}
+	
+	public void addPheromones(int ajout) {
+		this.pheromones += ajout;
+	}
+	
+	public boolean getOccupied() {
+		return occupied;
+	}
+	
+	public void setOccupied(boolean bool /*, string type*/) {
+		this.occupied=bool;
+	}
 
 	public boolean equals(Block position) {
 		if(this.getLine()==position.getLine()) {
@@ -34,13 +51,6 @@ public class Block {
 		
 	}
 	
-	public boolean getOccupied() {
-		return occupied;
-	}
-	
-	public void setOccupied(boolean bool) {
-		this.occupied=bool;
-	}
 	@Override
 	public String toString() {
 		return "Block [line=" + line + ", column=" + column + "]";
