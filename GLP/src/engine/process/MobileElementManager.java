@@ -87,7 +87,21 @@ public class MobileElementManager {
 	public void generateAnt() {
 		int random = getRandomNumber(0, fourmilieres.size()-1);
 		Block position = fourmilieres.get(random);
-		this.ants.add(new Ant(position));
+		this.ants.add(generateRandomAnt(position));
+	}
+	
+	public Ant generateRandomAnt(Block position) {
+		int random = getRandomNumber(0,20);
+		Ant ant = new Ant(position, 0, 0, 0, 0);
+		if(random <=10) {
+			ant = new Ant(position, 1, 1, 1, 3);
+			
+		}else if(random <= 15){
+			ant = new Ant(position, 4, 2, 0, 2);
+		}else if(random <= 20) {
+			ant = new Ant(position, 2, 0, 2, 7);
+		}
+		return ant;
 	}
 	
 	
@@ -218,7 +232,7 @@ public class MobileElementManager {
 		ArrayList<Ant> outOfBoundAnts = new ArrayList<Ant>();
 		for (Ant tmpant : ants) {
 			Block position= tmpant.getPosition();
-			Block newPosition;
+			Block newPosition = position;
 			
 			int random=getRandomNumber(0,3);
 			
@@ -227,27 +241,16 @@ public class MobileElementManager {
 				switch(random){
 				case 0:
 					newPosition = map.getBlock(position.getLine(), position.getColumn() - 1);
-					tmpant.setPosition(newPosition);
-					position.addPheromones(tmpant.getTauxPheromones());
-					
 					break;
 				case 1:
 					newPosition = map.getBlock(position.getLine() - 1, position.getColumn());
-					tmpant.setPosition(newPosition);
-					position.addPheromones(tmpant.getTauxPheromones());
-
 					break;
 				case 2:
 					newPosition = map.getBlock(position.getLine() , position.getColumn() + 1);
-					tmpant.setPosition(newPosition);
-					position.addPheromones(tmpant.getTauxPheromones());
 
 					break;
 				default:
 					newPosition = map.getBlock(position.getLine() + 1, position.getColumn());
-					tmpant.setPosition(newPosition);
-					position.addPheromones(tmpant.getTauxPheromones());
-
 					break;
 				}
 				
@@ -257,17 +260,12 @@ public class MobileElementManager {
 				case 0:
 					if(!map.isOnLeftBorder(position)) {
 						newPosition = map.getBlock(position.getLine(), position.getColumn() - 1);
-						tmpant.setPosition(newPosition);
-						position.addPheromones(tmpant.getTauxPheromones());
-
 						break;
 					}
 					outOfBoundAnts.add(tmpant);
 				case 1:
 					if(!map.isOnTop(position)) {
 						newPosition = map.getBlock(position.getLine()-1, position.getColumn() );
-						tmpant.setPosition(newPosition);
-						position.addPheromones(tmpant.getTauxPheromones());
 
 						break;
 					}
@@ -275,8 +273,6 @@ public class MobileElementManager {
 				case 2:
 					if(!map.isOnRightBorder(position)) {
 						newPosition = map.getBlock(position.getLine(), position.getColumn() + 1);
-						tmpant.setPosition(newPosition);
-						position.addPheromones(tmpant.getTauxPheromones());
 
 						break;
 					}
@@ -284,8 +280,6 @@ public class MobileElementManager {
 				default:
 					if(!map.isOnBottom(position)) {
 						newPosition = map.getBlock(position.getLine() + 1, position.getColumn());
-						tmpant.setPosition(newPosition);
-						position.addPheromones(tmpant.getTauxPheromones());
 
 						break;
 					}
@@ -293,6 +287,9 @@ public class MobileElementManager {
 				}
 				
 			}
+			tmpant.setPosition(newPosition);
+			position.addPheromones(tmpant.getTauxPheromones());
+
 			
 		} 
 		for (Ant ant : outOfBoundAnts) {

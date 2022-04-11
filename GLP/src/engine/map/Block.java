@@ -30,7 +30,11 @@ public class Block {
 	}
 	
 	public void addPheromones(int ajout) {
-		this.pheromones += ajout;
+		if((this.getPheromones() + ajout) > 100) {
+			this.pheromones += ajout;
+		}
+		//refresh pheromones timer;
+		
 	}
 	
 	public boolean getOccupied() {

@@ -24,6 +24,7 @@ public class GameConfiguration {
 	public static final int FOOD_MAX_NUMBER = 4;
 	public static final int PREDATOR_MAX_NUMBER = 2;
 	public static final int STONE_OBSTACLES_MAX_NUMBER = 7;
+	public static final int DEFAULT_TAUX_PHEROMONES = 4;
 	
 	//faire des méthodes permettant de modifier les constante, mais de façon privée (pour implémenter la liberté de modification par l'utilisateurs)
 	
