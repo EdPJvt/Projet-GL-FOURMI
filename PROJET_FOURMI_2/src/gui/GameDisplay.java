@@ -32,8 +32,7 @@ public class GameDisplay extends JPanel {
 
 	public GameDisplay(Map map, MobileElementManager manager) {
 		this.map = map;
-
-	this.manager = manager;
+		this.manager = manager;
 	}
 
 

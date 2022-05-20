@@ -3,6 +3,7 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -32,10 +33,13 @@ public class MainGUI extends JFrame implements Runnable {
 	private Map map;
 
 	private final static Dimension preferredSize = new Dimension(GameConfiguration.WINDOW_WIDTH, GameConfiguration.WINDOW_HEIGHT);
-
+	private final static Dimension halfPrefSize = new Dimension(GameConfiguration.WINDOW_WIDTH/2, GameConfiguration.WINDOW_HEIGHT/2);
+	
 	private MobileElementManager manager;
 
 	private GameDisplay dashboard;
+	
+	private Ihm ihm;
 
 	public MainGUI(String title) {
 		super(title);
@@ -51,17 +55,22 @@ public class MainGUI extends JFrame implements Runnable {
 		JTextField textField = new JTextField();
 		textField.addKeyListener(keyControls);
 		contentPane.add(textField);
+		
+		MouseControls mouseControls =new MouseControls();
+		contentPane.addMouseListener(mouseControls);
+		
 
 		map = GameBuilder.buildMap();
 		manager = GameBuilder.buildInitMobile(map);
 		dashboard = new GameDisplay(map, manager);
+		ihm = new Ihm(map, manager);
 		
-
-	//	MouseControls mouseControls = new MouseControls();
-	//	dashboard.addMouseListener(mouseControls);
+		
 
 		dashboard.setPreferredSize(preferredSize);
 		contentPane.add(dashboard, BorderLayout.CENTER);
+		
+		contentPane.add(new Ihm(map, manager), BorderLayout.EAST);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
@@ -117,7 +126,7 @@ public class MainGUI extends JFrame implements Runnable {
 		}
 	}
 
-/*	private class MouseControls implements MouseListener {
+	private class MouseControls implements MouseListener {
 
 
 		@Override
@@ -140,6 +149,23 @@ public class MainGUI extends JFrame implements Runnable {
 
 		}
 
-	}*/
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			int x = e.getX(); 
+			int y = e.getY();
+		
+			
+			int line = y/GameConfiguration.BLOCK_SIZE;
+			int column = x/GameConfiguration.BLOCK_SIZE;
+			
+		
+			Block position = new Block(line, column);
+			manager.generateItem(position);
+			dashboard.repaint();
+			
+
+		}
+
+	}
 
 }

@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import config.GameConfiguration;
@@ -14,13 +15,11 @@ import engine.map.Block;
 import engine.map.Map;
 import character.*;
 
-/**
- * Copyright SEDAMOP - Software Engineering
- * 
- * @author edgar.juvernat@cytu.etu.fr
- *
- */
+
 public class PaintStrategy extends JLabel{
+
+	private static final long serialVersionUID = 1L;
+
 	public void paint(Map map, Graphics graphics) {
 		int blockSize = GameConfiguration.BLOCK_SIZE;
 		Block[][] blocks = map.getBlocks();
@@ -43,16 +42,17 @@ public class PaintStrategy extends JLabel{
 
 	public void paint(AbstractEntity entity, Graphics graphics) {
 		Block position = entity.getPosition();
-		int blockSize = GameConfiguration.BLOCK_SIZE;
+		int blocksize = GameConfiguration.BLOCK_SIZE;
 
 		int y = position.getLine();
 		int x = position.getColumn();
 		
-		Image antPng = Toolkit.getDefaultToolkit().getImage("C:\\PROJET_FOURMI_2\\ant.png");
-		graphics.drawImage(antPng, x*blockSize, y*blockSize, null);
-	}
+	    graphics.setColor(Color.MAGENTA);
+	    graphics.drawOval(x*blocksize, y*blocksize, blocksize,blocksize );	
+	    }
 	
 	public void paintFood(ArrayList<Block> foodsources, Graphics graphics) {
+		int blocksize = GameConfiguration.BLOCK_SIZE;
 		int i;
 		for(i=0;i<foodsources.size();i++) {
 			Block tmp = foodsources.get(i);
@@ -60,12 +60,13 @@ public class PaintStrategy extends JLabel{
 			int x = tmp.getColumn();
 			
 			graphics.setColor(Color.YELLOW);
-			graphics.fillRect(x, y, GameConfiguration.BLOCK_SIZE, GameConfiguration.BLOCK_SIZE);
+			graphics.fillRect(x*blocksize, y*blocksize,blocksize, blocksize);
 			
 		}
 	}
 	
 	public void paintPredator(ArrayList<Block> predators, Graphics graphics) {
+		int blocksize = GameConfiguration.BLOCK_SIZE;
 		int i;
 		for(i=0;i<predators.size();i++) {
 			Block tmp = predators.get(i);
@@ -73,12 +74,13 @@ public class PaintStrategy extends JLabel{
 			int x = tmp.getColumn();
 			
 			graphics.setColor(Color.RED);
-			graphics.fillRect(x, y, GameConfiguration.BLOCK_SIZE, GameConfiguration.BLOCK_SIZE);
+			graphics.fillRect(x*blocksize, y*blocksize,blocksize, blocksize);
 			
 		}
 	}
 	
 	public void paintStoneObstacles(ArrayList<Block> stoneObstacles, Graphics graphics) {
+		int blocksize= GameConfiguration.BLOCK_SIZE;
 		int i;
 		for(i=0;i<stoneObstacles.size();i++) {
 			Block tmp = stoneObstacles.get(i);
@@ -86,12 +88,14 @@ public class PaintStrategy extends JLabel{
 			int x = tmp.getColumn();
 			
 			graphics.setColor(Color.GRAY);
-			graphics.fillRect(x, y, GameConfiguration.BLOCK_SIZE, GameConfiguration.BLOCK_SIZE);
+			graphics.fillRect(x*blocksize, y*blocksize,blocksize, blocksize);
 			
 		}
 	}
 	
 	public void paint(ArrayList<Block> fourmilieres, Graphics graphics) {
+		int blocksize = GameConfiguration.BLOCK_SIZE;
+
 		int i;
 		for(i=0;i<fourmilieres.size();i++) {
 			Block tmp = fourmilieres.get(i);
@@ -99,7 +103,7 @@ public class PaintStrategy extends JLabel{
 			int x = tmp.getColumn();
 			
 			graphics.setColor(new Color(139,69,19));
-			graphics.fillRect(x, y, GameConfiguration.BLOCK_SIZE, GameConfiguration.BLOCK_SIZE);
+			graphics.fillRect(x*blocksize, y*blocksize,blocksize, blocksize);
 			
 		}
 		

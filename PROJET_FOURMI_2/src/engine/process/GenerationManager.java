@@ -12,40 +12,51 @@ public class GenerationManager {
 
 		
 	
-	public  ArrayList<Block> generateFoodSource() {
-		int x = getRandomNumber(0,GameConfiguration.LINE_COUNT);
-		int y = getRandomNumber(0,GameConfiguration.COLUMN_COUNT);
+	public  ArrayList<Block> generateFoodSources() {
+		int blocksize = GameConfiguration.BLOCK_SIZE;
+		int y = getRandomNumber(0,GameConfiguration.WINDOW_HEIGHT);
+		int x = getRandomNumber(0,GameConfiguration.WINDOW_WIDTH);
 		ArrayList<Block> foodsources = new ArrayList<Block>(GameConfiguration.FOOD_MAX_NUMBER) ;
 		
-		Block position = new Block(x*GameConfiguration.BLOCK_SIZE,y*GameConfiguration.BLOCK_SIZE) ;
+		Block position = new Block(x/blocksize,y/blocksize) ;
 		while(position.getOccupied()) {
-			x = getRandomNumber(0,GameConfiguration.LINE_COUNT);
-			y = getRandomNumber(0,GameConfiguration.COLUMN_COUNT);
-			position = new Block(x*GameConfiguration.BLOCK_SIZE,y*GameConfiguration.BLOCK_SIZE) ;
+			y = getRandomNumber(0,GameConfiguration.WINDOW_HEIGHT);
+			x = getRandomNumber(0,GameConfiguration.WINDOW_WIDTH);
+			position = new Block(x/blocksize,y/blocksize) ;
 		}
 		int i;
 		for(i=0 ; i<GameConfiguration.FOOD_MAX_NUMBER ; i++){
-			foodsources.add(new Block(x*GameConfiguration.BLOCK_SIZE,y*GameConfiguration.BLOCK_SIZE));
+			foodsources.add(new Block(x/blocksize,y/blocksize));
 			position.setOccupied(true, "food");
 			while(position.getOccupied()) {
-				x = getRandomNumber(0,GameConfiguration.LINE_COUNT);
-				y = getRandomNumber(0,GameConfiguration.COLUMN_COUNT);
-				position = new Block(x*GameConfiguration.BLOCK_SIZE,y*GameConfiguration.BLOCK_SIZE) ;
+				y = getRandomNumber(0,GameConfiguration.WINDOW_HEIGHT);
+				x = getRandomNumber(0,GameConfiguration.WINDOW_WIDTH);
+				position = new Block(x/blocksize,y/blocksize) ;
 			}
 		}
 		return foodsources;
 	}
 	
+	public void generateFoodSource(Block position) {
+		position.setOccupied(true, "food");
+	}
 	
 	
 	
-	public  ArrayList<Ant> generateAnt(ArrayList<Block> fourmilieres) {
+	
+	
+	public  ArrayList<Ant> generateAnts(ArrayList<Block> fourmilieres) {
 		int random = getRandomNumber(0, fourmilieres.size()-1);
 		 ArrayList<Ant> ants= new ArrayList<Ant>();
 		
 		Block position = fourmilieres.get(random);
 		ants.add(generateRandomAnt(position));
 		return ants;
+	}
+	
+	public Ant generateAnt(Block tmp) {
+		Ant ant = generateRandomAnt(tmp);
+		return ant;
 	}
 	
 	
@@ -68,53 +79,78 @@ public class GenerationManager {
 	
 	
 	
-	public  ArrayList<Block> generatePredator() {
-		int x = getRandomNumber(0,GameConfiguration.LINE_COUNT);
-		int y = getRandomNumber(0,GameConfiguration.COLUMN_COUNT);
+	public  ArrayList<Block> generatePredators() {
+		int blocksize = GameConfiguration.BLOCK_SIZE;
+		int y = getRandomNumber(0,GameConfiguration.WINDOW_HEIGHT);
+		int x = getRandomNumber(0,GameConfiguration.WINDOW_WIDTH);
 		ArrayList<Block> predators = new ArrayList<Block>();
-		Block position = new Block(x*GameConfiguration.BLOCK_SIZE,y*GameConfiguration.BLOCK_SIZE) ;
+		Block position = new Block(x/blocksize,y/blocksize) ;
 		while(position.getOccupied()) {
-			x = getRandomNumber(0,GameConfiguration.LINE_COUNT);
-			y = getRandomNumber(0,GameConfiguration.COLUMN_COUNT);
-			position = new Block(x*GameConfiguration.BLOCK_SIZE,y*GameConfiguration.BLOCK_SIZE) ;
+			y = getRandomNumber(0,GameConfiguration.WINDOW_HEIGHT);
+			x = getRandomNumber(0,GameConfiguration.WINDOW_WIDTH);
+			position = new Block(x/blocksize,y/blocksize) ;
 		}
 		int i;
 		for(i=0 ; i<GameConfiguration.PREDATOR_MAX_NUMBER ; i++){
-			predators.add(new Block(x*GameConfiguration.BLOCK_SIZE,y*GameConfiguration.BLOCK_SIZE));
+			
+			predators.add(new Block(x/blocksize,y/blocksize));
 			position.setOccupied(true, "predator");
+			
+			
 			while(position.getOccupied()) {
-				x = getRandomNumber(0,GameConfiguration.LINE_COUNT);
-				y = getRandomNumber(0,GameConfiguration.COLUMN_COUNT);
-				position = new Block(x*GameConfiguration.BLOCK_SIZE,y*GameConfiguration.BLOCK_SIZE) ;
+				y = getRandomNumber(0,GameConfiguration.WINDOW_HEIGHT);
+				x = getRandomNumber(0,GameConfiguration.WINDOW_WIDTH);
+				position = new Block(x/blocksize,y/blocksize) ;
 			}
 		}
 		return predators;
 	}
 	
+	public void generatePredator(Block position) {
+		Block pos = new Block(position.getLine(), position.getColumn());
+		position.setOccupied(true, "predator");
+	}
+	
+	
+	
+	
+	
 	public  ArrayList<Block> generateStoneObstacles() {
-		int x = getRandomNumber(0,GameConfiguration.LINE_COUNT);
-		int y = getRandomNumber(0,GameConfiguration.COLUMN_COUNT);
+		int blocksize = GameConfiguration.BLOCK_SIZE;
+		int y = getRandomNumber(0,GameConfiguration.WINDOW_HEIGHT);
+		int x = getRandomNumber(0,GameConfiguration.WINDOW_WIDTH);
 		ArrayList<Block> stoneObstacles = new ArrayList<Block>();
 		
-		Block position = new Block(x*GameConfiguration.BLOCK_SIZE,y*GameConfiguration.BLOCK_SIZE) ;
+		Block position = new Block((int)x/blocksize,(int)y/blocksize) ;
 		while(position.getOccupied()) {
-			x = getRandomNumber(0,GameConfiguration.LINE_COUNT);
-			y = getRandomNumber(0,GameConfiguration.COLUMN_COUNT);
-			position = new Block(x*GameConfiguration.BLOCK_SIZE,y*GameConfiguration.BLOCK_SIZE) ;
+			y = getRandomNumber(0,GameConfiguration.WINDOW_HEIGHT);
+			x = getRandomNumber(0,GameConfiguration.WINDOW_WIDTH);
+			position = new Block((int)x/blocksize,(int)y/blocksize) ;
+			
 		}
 		int i;
 		for(i=0 ; i<GameConfiguration.STONE_OBSTACLES_MAX_NUMBER ; i++){
-			stoneObstacles.add(new Block(x*GameConfiguration.BLOCK_SIZE,y*GameConfiguration.BLOCK_SIZE));
+			stoneObstacles.add(new Block(x/blocksize,y/blocksize));
 			position.setOccupied(true, "stone");
+			
 			while(position.getOccupied()) {
-				x = getRandomNumber(0,GameConfiguration.LINE_COUNT);
-				y = getRandomNumber(0,GameConfiguration.COLUMN_COUNT);
-				position = new Block(x*GameConfiguration.BLOCK_SIZE,y*GameConfiguration.BLOCK_SIZE) ;
+				y = getRandomNumber(0,GameConfiguration.WINDOW_HEIGHT);
+				x = getRandomNumber(0,GameConfiguration.WINDOW_WIDTH);
+				position = new Block((int)x/GameConfiguration.BLOCK_SIZE,(int)y/GameConfiguration.BLOCK_SIZE) ;
+				
 			}
 		}
 		return stoneObstacles ;
 	}
 	
+	public void generateStoneObstacle(Block position) {
+		position.setOccupied(true, "stone");
+	}
+	
+	
+	public void generateAnthill(Block position) {
+		position.setOccupied(true, "anthill");
+	}
 	
 	private static int getRandomNumber(int min, int max) {
 		return (int) (Math.random() * (max + 1 - min)) + min;
